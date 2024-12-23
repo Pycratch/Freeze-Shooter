@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://br2c4ay0nrskh"]
+
+[ext_resource type="Texture2D" uid="uid://c1l1c6t5wy63o" path="res://icon.svg" id="1_gkeue"]
+[ext_resource type="PackedScene" uid="uid://b3js0pcuwd4bi" path="res://scenes/player.tscn" id="2_kufal"]
+[ext_resource type="PackedScene" uid="uid://f6c342hns7el" path="res://scenes/freeze_enemy.tscn" id="3_hndh1"]
+[ext_resource type="PackedScene" uid="uid://rsyxain7ytxn" path="res://scenes/bulletmanaging.tscn" id="4_e3gpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvt1g"]
+size = Vector2(126, 134)
+
+[node name="testing" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(291, 187)
+texture = ExtResource("1_gkeue")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+shape = SubResource("RectangleShape2D_dvt1g")
+
+[node name="Player" parent="." instance=ExtResource("2_kufal")]
+position = Vector2(59, 65)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Freeze Enemy" parent="." instance=ExtResource("3_hndh1")]
+position = Vector2(743, -177)
+
+[node name="bulletmanaging" parent="." instance=ExtResource("4_e3gpg")]
+
+[connection signal="shoot" from="Player" to="bulletmanaging" method="_on_player_shoot"]

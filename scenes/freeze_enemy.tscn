@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://f6c342hns7el"]
+
+[ext_resource type="Script" path="res://scripts/freeze_enemy.gd" id="1_4kh3a"]
+[ext_resource type="Texture2D" uid="uid://bu1fpy3nj7hlq" path="res://Assets/Art/Spritesheets/Spritesheet.png" id="2_3jy3l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dydg"]
+size = Vector2(44, 76)
+
+[node name="Freeze Enemy" type="CharacterBody2D" groups=["Enemy", "freeze"]]
+script = ExtResource("1_4kh3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("2_3jy3l")
+region_enabled = true
+region_rect = Rect2(19.0226, 1.99894, 9.02542, 13.9618)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7dydg")

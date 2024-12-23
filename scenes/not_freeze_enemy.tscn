@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgs1xsv4k5inw"]
+
+[ext_resource type="Script" path="res://scripts/not_freeze_enemy.gd" id="1_mm16j"]
+[ext_resource type="Texture2D" uid="uid://bu1fpy3nj7hlq" path="res://Assets/Art/Spritesheets/Spritesheet.png" id="2_d2hg1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sst8p"]
+size = Vector2(50, 76)
+
+[node name="Not_freeze_enemy" type="CharacterBody2D" groups=["Enemy", "not_freeze"]]
+script = ExtResource("1_mm16j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("2_d2hg1")
+region_enabled = true
+region_rect = Rect2(34.9523, 1.98988, 9.11727, 14.0145)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sst8p")

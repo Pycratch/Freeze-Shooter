@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3js0pcuwd4bi"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_xy1wy"]
+[ext_resource type="Texture2D" uid="uid://bu1fpy3nj7hlq" path="res://Assets/Art/Spritesheets/Spritesheet.png" id="2_4hvki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulo6q"]
+size = Vector2(64, 90)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p3y1h"]
+radius = 53.0
+height = 120.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_xy1wy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("2_4hvki")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ulo6q")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Freeze_button" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -112.0
+offset_right = 76.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Freeze"
+
+[node name="Heal" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = 93.0
+offset_right = 62.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Heal/Freeze"
+
+[node name="textpanel" type="Panel" parent="CanvasLayer"]
+offset_left = 45.0
+offset_top = 25.0
+offset_right = 237.0
+offset_bottom = 145.0
+
+[node name="text" type="Label" parent="CanvasLayer/textpanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Health: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shoot_CD" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.25
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_p3y1h")
+
+[node name="Freeze Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="pressed" from="CanvasLayer/Freeze_button" to="." method="_on_freeze_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Heal" to="." method="_on_heal_pressed"]
+[connection signal="timeout" from="Shoot_CD" to="." method="_on_shoot_cd_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Freeze Timer" to="." method="_on_freeze_timer_timeout"]
