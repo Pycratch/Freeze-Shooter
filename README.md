@@ -14,5 +14,10 @@ How to run:
 Installation:
 -Clone the repository and run using Godot.
 
+How to contribute:
+If you want to contribute, read the CONTRIBUTING.md
+
 ##LICENSE:
 This project is licensed under the MIT license. Read more here -> https://choosealicense.com/licenses/mit/
+
+If you have any questions, feel free to dm me on discord: yayamaingame
